@@ -17,9 +17,12 @@ _This single React Application takes it's clock method and compares the "Actual"
 
 ## <span style="color:#74875d;">Technologies Used</span>
 
-* HTML
-* JSX
+HTML
 * React
+* JSX
+* Webpack, Eslint, babel
+* React Hot Loader
+* CSS Loader, CSS Style Loader, and JSX Loader
 
 ### <span style="color:#74875d;">License</span>
 
