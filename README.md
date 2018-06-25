@@ -1,6 +1,4 @@
-# _<p align="center">React Virtual Clock</p>_
-
-#### _<p align="center">Assignment for Epicodus</p>_
+# _<p align="center">React Help Me Queue</p>_
 
 #### _**<p align="center">By: Julia Sheremet</p>**_
 
@@ -13,7 +11,7 @@
 
 ### Link to live application:
 
-_This single React Application takes it's clock method and compares the "Actual" DOM to its Virtual DOM._
+_This single page application is a basic practice to understand the principles with JSX and CSS integrated in a React Application._
 
 ## <span style="color:#74875d;">Technologies Used</span>
 
