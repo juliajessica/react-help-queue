@@ -13,9 +13,36 @@
 
 _This single page application is a basic practice to understand the principles with JSX and CSS integrated in a React Application._
 
+## Setup/Installation Requirements 💻
+* Clone repository on your local computer.
+* Open Index.html in a browser Window
+
+
+In the project directory, you can run this line of code to install all dependencies:
+
+```sh
+$ npm install
+```
+
+Build up the app for production to the build folder.
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+```sh
+$ npm run build
+```
+
+Runs the app in the development mode.
+a http://localhost:8080/ will open up and you will have access to view the application in the browser.
+
+```sh
+$ npm run start
+```
+
+The application is ready!
+
 ## <span style="color:#74875d;">Technologies Used</span>
 
-HTML
+* HTML
 * React
 * JSX
 * Webpack, Eslint, babel
