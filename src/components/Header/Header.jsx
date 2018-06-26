@@ -1,5 +1,6 @@
 import React from 'react';
-import style from 'style.css';
+import { Link } from 'react-router-dom';
+// import style from 'style.css';
 
 function Header(){
   let headerStyles = {
@@ -9,21 +10,28 @@ function Header(){
   };
 
   return(
-    <div style={headerStyles} className="{style.green-text}">
+    <div style={headerStyles}>
       <h1>Help Queue</h1>
+      <Link to="/">Home</Link> | <Link to="/newticket">Create Ticket</Link>
 
-      // <style jsx>{`
-      //   .green-text {
-      //     color: green;
-      //   }
-      //   .green-text:hover {
-      //     background-color: pink;
-      //     opacity: 0.5;
-      //   }
-      // `}</style>
+
     </div>
 
   );
 }
 
 export default Header;
+
+
+
+// <style jsx>{`
+//   .green-text {
+//     color: green;
+//   }
+//   .green-text:hover {
+//     background-color: pink;
+//     opacity: 0.5;
+//   }
+// `}</style>
+
+//className={style.green-text}
