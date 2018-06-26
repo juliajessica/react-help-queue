@@ -1,0 +1,8 @@
+.green-text {
+  color: green;
+}
+
+.green-text:hover {
+  background-color: pink;
+  opacity: 0.5;
+}
