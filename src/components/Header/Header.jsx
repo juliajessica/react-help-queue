@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import style from 'style.css';
+import styles from './styles.css';
 
 function Header(){
   let headerStyles = {
@@ -10,7 +10,7 @@ function Header(){
   };
 
   return(
-    <div style={headerStyles}>
+    <div style={headerStyles} className={styles.greenText}>
       <h1>Help Queue</h1>
       <Link to="/">Home</Link> | <Link to="/newticket">Create Ticket</Link>
 
