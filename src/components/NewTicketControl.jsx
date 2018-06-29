@@ -17,8 +17,16 @@ class NewTicketControl extends React.Component {
   // }
 
   render(){
+    let currentlyVisibleContent = null;
+    if (this.state.formVisibleOnPage){
+      currentlyVisibleContent = <NewTicketForm />;
+    } else {
+      currentlyVisibleContent = <ConfirmationQuestions />;
+    }
     return (
-      <ConfirmationQuestions />
+      <div>
+        {currentlyVisibleContent}
+      </div>
     );
   }
 }
