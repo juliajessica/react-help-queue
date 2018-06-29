@@ -10,7 +10,7 @@ class NewTicketControl extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(){
+  handleClick(){ //event function to change the state
     this.setState({formVisibleOnPage: true});
     console.log('formVisibleOnPage is currently set to:' + this.state.formVisibleOnPage);
   }
