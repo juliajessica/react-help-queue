@@ -1,16 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function NewTicketForm(){
+function NewTicketForm(props){
   let _names = null;
   let _location = null;
   let _issue = null;
 
-  function handleNewTicketFormSubmission(event){
+  function handleNewTicketFormSubmission(event) {
     event.preventDefault();
     props.onNewTicketCreation({names: _names.value, location: _location.value, issue: _issue.value});
     _names.value = '';
     _location.value = '';
-    _issue.value = ''; //emptys out the values
+    _issue.value = '';
   } //EVENT HANDLER: you have to add 'function' to this event handler because it's not a class based compnent. - we call event.preventDefault(); to prevent the form submission from attempting an HTTP GET reques
 
   return (
@@ -35,5 +36,9 @@ function NewTicketForm(){
     </div>
   );
 }
+
+NewTicketForm.propTypes = {
+  onNewTicketCreation: PropTypes.func
+};
 
 export default NewTicketForm;
