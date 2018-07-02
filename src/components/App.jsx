@@ -19,14 +19,14 @@ class App extends React.Component{
     let newMasterTicketList = this.state.masterTicketList.slice();
     newMasterTicketList.push(newTicket);
     this.setState({masterTicketList: newMasterTicketList});
-  }
+  }//callback function
   render(){
     return (
       <div>
         <Header />
         <Switch>
-          <Route exact path='/' render={()=><TicketList ticketList={this.state.masterTicketList} />} />
-          <Route path='/newticket' render={()=><NewTicketControl onNewTicketCreation={this.handleAddingNewTicketToList} />} />
+          <Route exact path='/' render={()=><TicketList ticketList={this.state.masterTicketList} />} /> //passing lifted state
+          <Route path='/newticket' render={()=><NewTicketControl onNewTicketCreation={this.handleAddingNewTicketToList} />} />//passing callback from parent to child
           <Route component={Error404} />
         </Switch>
       </div>
