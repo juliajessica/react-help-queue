@@ -1,9 +1,18 @@
 import React from 'react';
 
 function NewTicketForm(){
+  let _names = null;
+  let _location = null;
+  let _issue = null;
 
   function handleNewTicketFormSubmission(event){
     event.preventDefault();
+    console.log(_names.value);
+    console.log(_location.value);
+    console.log(_issue.value);
+    _names.value = '';
+    _location.value = '';
+    _issue.value = ''; //emptys out the values
   } //EVENT HANDLER: you have to add 'function' to this event handler because it's not a class based compnent. - we call event.preventDefault(); to prevent the form submission from attempting an HTTP GET reques
 
   return (
@@ -13,7 +22,7 @@ function NewTicketForm(){
           type='text'
           id='names'
           placeholder='Pair Names'
-          ref={(input) =>{_names = input;}}/>
+          ref={(input) => {_names = input;}}/>
         <input
           type='text'
           id='location'
