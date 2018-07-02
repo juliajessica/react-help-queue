@@ -14,7 +14,7 @@ function TicketList(props){
         key={ticket.id} />
       )}
     </div>
-  );
+  );//key={ticket.id} -use our tickets' unique identifiers as the key values when we loop through all tickets
 }
 TicketList.propTypes = {
   ticketList: PropTypes.array

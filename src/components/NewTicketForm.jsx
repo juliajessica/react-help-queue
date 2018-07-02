@@ -14,6 +14,8 @@ function NewTicketForm(props){
     _location.value = '';
     _issue.value = '';
   } //EVENT HANDLER: you have to add 'function' to this event handler because it's not a class based compnent. - we call event.preventDefault(); to prevent the form submission from attempting an HTTP GET reques
+  
+  // added another key-value pair to the information we're passing to our callback method
 
   return (
     <div>
