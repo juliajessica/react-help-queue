@@ -11,8 +11,14 @@ class App extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      masterTicketLit: []
+      masterTicketList: []
     };
+    this.handleAddingNewTicketToList = this.handleAddingNewTicketToList.bind(this);
+  }
+  handleAddingNewTicketToList(newTicket){
+    let newMasterTicketList = this.state.masterTicketList.slice();
+    newMasterTicketList.push(newTicket);
+    this.setState({masterTicketList: newMasterTicketList});
   }
   render(){
     return (
@@ -20,7 +26,7 @@ class App extends React.Component{
         <Header />
         <Switch>
           <Route exact path='/' component={TicketList} />
-          <Route path='/newTicket' component={NewTicketControl} />
+          <Route path='/newTicket' render={()=><NewTicketControl onNewTicketCreation={this.handleAddingNewTicketToList} />
           <Route component={Error404} />
         </Switch>
       </div>
