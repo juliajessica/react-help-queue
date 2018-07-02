@@ -22,7 +22,7 @@ class NewTicketControl extends React.Component {
     if (this.state.formVisibleOnPage){
       currentlyVisibleContent = <NewTicketForm />;
     } else {
-      currentlyVisibleContent = <ConfirmationQuestions onTroubleshooingConfirmation={this.handleTroubleshootingConfirmation}/>;
+      currentlyVisibleContent = <ConfirmationQuestions onTroubleshootingConfirmation={this.handleTroubleshootingConfirmation}/>;
     }
     return (
       <div>
