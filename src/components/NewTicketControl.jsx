@@ -9,10 +9,10 @@ class NewTicketControl extends React.Component {
     this.state = {
       formVisibleOnPage: false
     };
-    this.handleTroubleshootingConfirmation = this.handleTroubleshootingConfirmation.bind(this);
+    this.handleTroubleshootingConfirmation = this.handleTroubleshootingConfirmation.bind(this); //allows us to use state in method
   }
 
-  handleTroubleshootingConfirmation(){ //event funct change state
+  handleTroubleshootingConfirmation(){ //EVENT HANDLER funct change state
     this.setState({formVisibleOnPage: true});
 
   }
