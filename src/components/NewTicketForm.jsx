@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { v4 } from 'uuid';
+import Moment from 'moment';
 
 function NewTicketForm(props){
   let _names = null;
@@ -9,12 +10,12 @@ function NewTicketForm(props){
 
   function handleNewTicketFormSubmission(event) {
     event.preventDefault();
-    props.onNewTicketCreation({names: _names.value, location: _location.value, issue: _issue.value, id: v4()});
+    props.onNewTicketCreation({names: _names.value, location: _location.value, issue: _issue.value, id: v4(), timeOpen: new Moment()});
     _names.value = '';
     _location.value = '';
     _issue.value = '';
   } //EVENT HANDLER: you have to add 'function' to this event handler because it's not a class based compnent. - we call event.preventDefault(); to prevent the form submission from attempting an HTTP GET reques
-  
+
   // added another key-value pair to the information we're passing to our callback method
 
   return (
