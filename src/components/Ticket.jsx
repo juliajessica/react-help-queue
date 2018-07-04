@@ -1,5 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';import Moment from 'moment';
+import PropTypes from 'prop-types';
+import Moment from 'moment';
 
 function Ticket(props){
   return(
