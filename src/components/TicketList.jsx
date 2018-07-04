@@ -8,29 +8,20 @@ function TicketList(props){
     <div>
       <hr/>
         {Object.keys(props.ticketList).map(function(ticketId) {
-          let ticket = props.ticketList[ticketId];
-          return
-          <Ticket
-            names={ticket.names}
-            location={ticket.location}
-            issue={ticket.issue}
-            formattedWaitTime={ticket.formattedWaitTime}
-            currentRouterPath={props.currentRouterPath}
-            key={ticket.id}
-            onTicketSelection={props.onTicketSelection} />;
-        })}
-      // {props.ticketList.map((ticket) =>
-      //   <Ticket
-      //     names={ticket.names}
-      //     location={ticket.location}
-      //     issue={ticket.issue}
-      //     formattedWaitTime={ticket.formattedWaitTime}
-      //     currentRouterPath={props.currentRouterPath}
-      //     onTicketSelection={props.onTicketSelection}
-      //     key={ticket.id} />
-      // )}
-    </div> //currentRouterPath={props.currentRouterPath} informs if and when the app is rendered
-  );//key={ticket.id} -use our tickets' unique identifiers as the key values when we loop through all tickets
+          var ticket = props.ticketList[ticketId];
+          return <Ticket
+          names={ticket.names}
+          location={ticket.location}
+          issue={ticket.issue}
+          formattedWaitTime={ticket.formattedWaitTime}
+          currentRouterPath={props.currentRouterPath}
+          key={ticketId}
+          onTicketSelection={props.onTicketSelection}
+          ticketId={ticketId} />;
+      })}
+
+    </div>
+  );
 }
 TicketList.propTypes = {
   ticketList: PropTypes.object,
@@ -39,3 +30,20 @@ TicketList.propTypes = {
 };
 
 export default TicketList;
+//NOTES:
+
+//maping the state of the array
+// {props.ticketList.map((ticket) =>
+//   <Ticket
+//     names={ticket.names}
+//     location={ticket.location}
+//     issue={ticket.issue}
+//     formattedWaitTime={ticket.formattedWaitTime}
+//     currentRouterPath={props.currentRouterPath}
+//     onTicketSelection={props.onTicketSelection}
+//     key={ticket.id} />
+// )}
+
+//currentRouterPath={props.currentRouterPath} informs if and when the app is rendered
+
+//key={ticket.id} -use our tickets' unique identifiers as the key values when we loop through all tickets
