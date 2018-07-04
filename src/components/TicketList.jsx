@@ -7,21 +7,33 @@ function TicketList(props){
   return (
     <div>
       <hr/>
-      {props.ticketList.map((ticket) =>
-        <Ticket
-          names={ticket.names}
-          location={ticket.location}
-          issue={ticket.issue}
-          formattedWaitTime={ticket.formattedWaitTime}
-          currentRouterPath={props.currentRouterPath}
-          onTicketSelection={props.onTicketSelection}
-          key={ticket.id} />
-      )}
+        {Object.keys(props.ticketList).map(function(ticketId) {
+          let ticket = props.ticketList[ticketId];
+          return
+          <Ticket
+            names={ticket.names}
+            location={ticket.location}
+            issue={ticket.issue}
+            formattedWaitTime={ticket.formattedWaitTime}
+            currentRouterPath={props.currentRouterPath}
+            key={ticket.id}
+            onTicketSelection={props.onTicketSelection} />;
+        })}
+      // {props.ticketList.map((ticket) =>
+      //   <Ticket
+      //     names={ticket.names}
+      //     location={ticket.location}
+      //     issue={ticket.issue}
+      //     formattedWaitTime={ticket.formattedWaitTime}
+      //     currentRouterPath={props.currentRouterPath}
+      //     onTicketSelection={props.onTicketSelection}
+      //     key={ticket.id} />
+      // )}
     </div> //currentRouterPath={props.currentRouterPath} informs if and when the app is rendered
   );//key={ticket.id} -use our tickets' unique identifiers as the key values when we loop through all tickets
 }
 TicketList.propTypes = {
-  ticketList: PropTypes.array,
+  ticketList: PropTypes.object,
   currentRouterPath: PropTypes.string,
   onTicketSelection: PropTypes.func
 };

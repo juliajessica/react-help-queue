@@ -12,7 +12,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      masterTicketList: [],
+      masterTicketList: {},
       selectedTicket: null
     };
     this.handleAddingNewTicketToList = this.handleAddingNewTicketToList.bind(this);
@@ -40,15 +40,18 @@ class App extends React.Component {
   }//slice() to create a copy of our masterTicketList array called newMasterTicketList. Add formattedWaitTime value to each ticket in this copy. Set it = to Moment.js-formatted elapsed wait time. (ie: "A minute ago" or "five minutes ago"). Reset masterTicketList state to the updated array using setState(). Logging the word "check" to the console every time the method runs, so we can confirm it's working.
 
   handleAddingNewTicketToList(newTicket){
-    var newMasterTicketList = this.state.masterTicketList.slice();
-    newTicket.formattedWaitTime = (newTicket.timeOpen).fromNow(true);
-    newMasterTicketList.push(newTicket);
-    this.setState({masterTicketList: newMasterTicketList});
-  }//callback function
+    let newMasterTicketList = Object.assign({}, this.state.masterTicketList,{
+      [newTicket.id]: newTicket
+    });
+    newMasterTicketList[newTicket.id].formattedWaitTime = newMasterTicketList[newTicket.id].timeOpen.fromNow(true);
+  this.setState({masterTicketList: newMasterTicketList});
+    console.log(this.state);
+  }//callback function - adding new tickets into state
 
   handleChangingSelectedTicket(ticket){
     this.setState({selectedTicket: ticket});
-  }//callback function
+    console.log(this.state);
+  }//callback function - adding new tickets into the selected ticket state
 
   render(){
     return (
@@ -65,5 +68,5 @@ class App extends React.Component {
       </div>
     );
   }
-}//currentRouterPath={props.location.pathname} is allowing you to retrieve the Current Route from React-Router Props (captured & pass the user's current route from React-Router)
+}///currentRouterPath={props.location.pathname} is allowing you to retrieve the Current Route from React-Router Props (captured & pass the user's current route from React-Router)
 export default App;
