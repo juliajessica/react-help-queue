@@ -1,8 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 // import Moment from 'moment';
 
 function Ticket(props){
+  function handleSavingSelectedTicket(ticketId){
+    const { dispatch } = props;
+    const action = {
+      type: 'SELECT_TICKET',
+      ticketId: ticketId
+    };
+    dispatch(action);
+  }
+
   const ticketInformation =
     <div>
       <h3>{props.location} - {props.names}</h3>
@@ -20,7 +30,7 @@ function Ticket(props){
 
   if (props.currentRouterPath === '/admin'){
     return (
-      <div onClick={() => {props.onTicketSelection(props.ticketId);}}>
+      <div onClick={() => {handleSavingSelectedTicket(props.ticketId);}}>
         {ticketInformation}
       </div>
     );
@@ -38,11 +48,11 @@ Ticket.propTypes = {
   issue: PropTypes.string,
   formattedWaitTime: PropTypes.string.isRequired,
   currentRouterPath: PropTypes.string,
-  onTicketSelection: PropTypes.func,
+  dispatch: PropTypes.func,
   ticketId: PropTypes.string.isRequired
 };
 
-export default Ticket;
+export default connect()(Ticket);
 
 
 //currentRouterPath={props.currentRouterPath} informs if and when the app is rendered

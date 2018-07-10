@@ -11,15 +11,6 @@ import PropTypes from 'prop-types';
 
 class App extends React.Component {
 
-  constructor(props) {
-    super(props);
-    //console.log(props);
-    this.state = {
-      selectedTicket: null
-    };
-    this.handleChangingSelectedTicket = this.handleChangingSelectedTicket.bind(this);
-  }//this is application state
-
   //implementing a lifecycle
   componentDidMount() {
     this.waitTimeUpdateTimer = setInterval(() =>
@@ -40,10 +31,6 @@ class App extends React.Component {
     // this.setState({masterTicketList: newMasterTicketList});
   }
 
-  handleChangingSelectedTicket(ticketId){
-    this.setState({selectedTicket: ticketId});
-    //console.log(this.state);
-  }//callback function - adding new tickets into the selected ticket state
 
   render(){
     //console.log(this.state.masterTicketList);
@@ -53,13 +40,9 @@ class App extends React.Component {
         <Switch>
           <Route exact path='/' render={()=>
             <TicketList ticketList={this.props.masterTicketList} />} />//passing lifted state
-          <Route path='/newticket' render={()=>
-            <NewTicketControl />} />//passing callback from parent to child
+          <Route path='/newticket' component={NewTicketControl}/>//passing callback from parent to child
           <Route path='/admin' render={(props)=>
-            <Admin ticketList={this.props.masterTicketList}
-              currentRouterPath={props.location.pathname}
-              onTicketSelection={this.handleChangingSelectedTicket}
-              selectedTicket={this.state.selectedTicket}/>} />
+            <Admin currentRouterPath={props.location.pathname} />} />
           <Route component={Error404} />
         </Switch>
       </div>
@@ -72,7 +55,7 @@ App.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    masterTicketList: state
+    masterTicketList: state.masterTicketList
   };
 };//retrieves state info and match those state values to their corresponding React props!
 export default withRouter(connect(mapStateToProps)(App));
