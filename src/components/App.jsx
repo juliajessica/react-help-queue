@@ -50,7 +50,7 @@ class App extends React.Component {
   // }//slice() to create a copy of our masterTicketList array called newMasterTicketList. Add formattedWaitTime value to each ticket in this copy. Set it = to Moment.js-formatted elapsed wait time. (ie: "A minute ago" or "five minutes ago"). Reset masterTicketList state to the updated array using setState(). Logging the word "check" to the console every time the method runs, so we can confirm it's working.
 
   handleAddingNewTicketToList(newTicket){
-    var newTicketId = v4()
+    var newTicketId = v4();
     var newMasterTicketList = Object.assign({}, this.state.masterTicketList, {
       [newTicketId]: newTicket
     });
