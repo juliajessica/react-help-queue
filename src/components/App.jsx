@@ -6,8 +6,6 @@ import Error404 from './Error404';
 import Admin from './Admin';
 
 import { Switch, Route, withRouter } from 'react-router-dom';
-import Moment from 'moment';
-import { v4 } from 'uuid';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -15,7 +13,7 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log(props);
+    //console.log(props);
     this.state = {
       selectedTicket: null
     };
@@ -42,22 +40,13 @@ class App extends React.Component {
     // this.setState({masterTicketList: newMasterTicketList});
   }
 
-  // handleAddingNewTicketToList(newTicket){
-  //   var newTicketId = v4();
-  //   var newMasterTicketList = Object.assign({}, this.state.masterTicketList, {
-  //     [newTicketId]: newTicket
-  //   });
-  //   newMasterTicketList[newTicketId].formattedWaitTime = newMasterTicketList[newTicketId].timeOpen.fromNow(true);
-  //   this.setState({masterTicketList: newMasterTicketList});
-  // }//callback function - adding new tickets into state
-
   handleChangingSelectedTicket(ticketId){
     this.setState({selectedTicket: ticketId});
-    console.log(this.state);
+    //console.log(this.state);
   }//callback function - adding new tickets into the selected ticket state
 
   render(){
-    console.log(this.state.masterTicketList);
+    //console.log(this.state.masterTicketList);
     return (
       <div>
         <Header/>
@@ -84,8 +73,8 @@ App.propTypes = {
 const mapStateToProps = state => {
   return {
     masterTicketList: state
-  }
-}//retrieves state info and match those state values to their corresponding React props!
+  };
+};//retrieves state info and match those state values to their corresponding React props!
 export default withRouter(connect(mapStateToProps)(App));
 
 ///currentRouterPath={props.location.pathname} is allowing you to retrieve the Current Route from React-Router Props (captured & pass the user's current route from React-Router)
