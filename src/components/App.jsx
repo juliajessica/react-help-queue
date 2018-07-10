@@ -17,7 +17,6 @@ class App extends React.Component {
       masterTicketList: {},
       selectedTicket: null
     };
-    this.handleAddingNewTicketToList = this.handleAddingNewTicketToList.bind(this);
     this.handleChangingSelectedTicket = this.handleChangingSelectedTicket.bind(this);
   }//this is application state
 
@@ -41,22 +40,14 @@ class App extends React.Component {
     this.setState({masterTicketList: newMasterTicketList});
   }
 
-  // updateTicketElapsedWaitTime() {
-  //   let newMasterTicketList = this.state.masterTicketList.slice();
-  //   newMasterTicketList.forEach((ticket) =>
-  //     ticket.formattedWaitTime = (ticket.timeOpen).fromNow(true)
-  //   );
+  // handleAddingNewTicketToList(newTicket){
+  //   var newTicketId = v4();
+  //   var newMasterTicketList = Object.assign({}, this.state.masterTicketList, {
+  //     [newTicketId]: newTicket
+  //   });
+  //   newMasterTicketList[newTicketId].formattedWaitTime = newMasterTicketList[newTicketId].timeOpen.fromNow(true);
   //   this.setState({masterTicketList: newMasterTicketList});
-  // }//slice() to create a copy of our masterTicketList array called newMasterTicketList. Add formattedWaitTime value to each ticket in this copy. Set it = to Moment.js-formatted elapsed wait time. (ie: "A minute ago" or "five minutes ago"). Reset masterTicketList state to the updated array using setState(). Logging the word "check" to the console every time the method runs, so we can confirm it's working.
-
-  handleAddingNewTicketToList(newTicket){
-    var newTicketId = v4();
-    var newMasterTicketList = Object.assign({}, this.state.masterTicketList, {
-      [newTicketId]: newTicket
-    });
-    newMasterTicketList[newTicketId].formattedWaitTime = newMasterTicketList[newTicketId].timeOpen.fromNow(true);
-    this.setState({masterTicketList: newMasterTicketList});
-  }//callback function - adding new tickets into state
+  // }//callback function - adding new tickets into state
 
   handleChangingSelectedTicket(ticketId){
     this.setState({selectedTicket: ticketId});
@@ -72,7 +63,7 @@ class App extends React.Component {
           <Route exact path='/' render={()=>
             <TicketList ticketList={this.state.masterTicketList} />} />//passing lifted state
           <Route path='/newticket' render={()=>
-            <NewTicketControl onNewTicketCreation={this.handleAddingNewTicketToList} />} />//passing callback from parent to child
+            <NewTicketControl />} />//passing callback from parent to child
           <Route path='/admin' render={(props)=>
             <Admin ticketList={this.state.masterTicketList}
               currentRouterPath={props.location.pathname}
