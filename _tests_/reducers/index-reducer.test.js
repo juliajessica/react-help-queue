@@ -21,5 +21,5 @@ describe('rootReducer', () => {
   test('Should contain selectedTicketReducer logic', () => {
     expect(store.getState().selectedTicket).toEqual(selectedTicketReducer(undefined, { type: null }));
   });
-  
+
 });

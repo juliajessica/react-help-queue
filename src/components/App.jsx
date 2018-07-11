@@ -1,54 +1,57 @@
 import React from 'react';
-import Header from './Header/Header';
+import Header from './Header';
 import TicketList from './TicketList';
 import NewTicketControl from './NewTicketControl';
 import Error404 from './Error404';
-import Admin from './Admin';
-
 import { Switch, Route, withRouter } from 'react-router-dom';
+import Moment from 'moment';
+import Admin from './Admin';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import c from './../constants';
 
 class App extends React.Component {
 
-  //implementing a lifecycle
   componentDidMount() {
     this.waitTimeUpdateTimer = setInterval(() =>
       this.updateTicketElapsedWaitTime(),
-    5000
+    60000
     );
-  }//instruct React to create a setInterval() timer named waitTimeUpdateTimer when our App component first mounts. what runs code to update elapsed wait times for each ticket in regular intervals. it runs a method called updateTicketElapsedWaitTime() every five seconds.
+  }
 
   componentWillUnmount(){
     clearInterval(this.waitTimeUpdateTimer);
-  } //halting waitTimeUpdateTimer like this: clean up after the timers created - it prevents "old" timers from running in the background and slowing our app.
-
-  updateTicketElapsedWaitTime() {
-    // var newMasterTicketList = Object.assign({}, this.state.masterTicketList);
-    // Object.keys(newMasterTicketList).forEach(ticketId => {
-    //   newMasterTicketList[ticketId].formattedWaitTime = (newMasterTicketList[ticketId].timeOpen).fromNow(true);
-    // });
-    // this.setState({masterTicketList: newMasterTicketList});
   }
 
+  updateTicketElapsedWaitTime() {
+    const { dispatch } = this.props;
+    Object.keys(this.props.masterTicketList).map(ticketId => {
+      const ticket = this.props.masterTicketList[ticketId];
+      const newFormattedWaitTime = ticket.timeOpen.fromNow(true);
+      const action = {
+        type: c.UPDATE_TIME,
+        id: ticketId,
+        formattedWaitTime: newFormattedWaitTime
+      };
+      dispatch(action);
+    });
+  }
 
   render(){
-    //console.log(this.state.masterTicketList);
     return (
       <div>
         <Header/>
         <Switch>
-          <Route exact path='/' render={()=>
-            <TicketList ticketList={this.props.masterTicketList} />} />//passing lifted state
-          <Route path='/newticket' component={NewTicketControl}/>//passing callback from parent to child
-          <Route path='/admin' render={(props)=>
-            <Admin currentRouterPath={props.location.pathname} />} />
+          <Route exact path='/' render={()=><TicketList ticketList={this.props.masterTicketList} />} />
+          <Route path='/newticket' render={()=><NewTicketControl />} />
+          <Route path='/admin' render={(props)=><Admin currentRouterPath={props.location.pathname} />} />
           <Route component={Error404} />
         </Switch>
       </div>
     );
   }
 }
+
 App.propTypes = {
   masterTicketList: PropTypes.object
 };

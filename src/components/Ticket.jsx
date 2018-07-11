@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import c from './../constants';
 // import Moment from 'moment';
 
 function Ticket(props){
+
   function handleSavingSelectedTicket(ticketId){
     const { dispatch } = props;
     const action = {
-      type: 'SELECT_TICKET',
+      type: c.SELECT_TICKET,
       ticketId: ticketId
     };
     dispatch(action);
@@ -18,7 +20,6 @@ function Ticket(props){
       <h3>{props.location} - {props.names}</h3>
       <h4>{props.formattedWaitTime}</h4>
       <hr/>
-
 
       <style jsx>{`
         div {
@@ -48,7 +49,6 @@ Ticket.propTypes = {
   issue: PropTypes.string,
   formattedWaitTime: PropTypes.string.isRequired,
   currentRouterPath: PropTypes.string,
-  dispatch: PropTypes.func,
   ticketId: PropTypes.string.isRequired
 };
 

@@ -1,4 +1,6 @@
 import ticketListReducer from './../../src/reducers/ticket-list-reducer';
+import Moment from 'moment';
+import c from './../constants';
 
 describe('ticketListReducer', () => {
   let action;
@@ -17,12 +19,13 @@ describe('ticketListReducer', () => {
   test('Should successfully add new ticket data to masterTicketList', () => {
     const { names, location, issue, timeOpen, id } = sampleTicketData;
     action = {
-      type: 'ADD_TICKET',
+      type: c.ADD_TICKET,
       names: names,
       location: location,
       issue: issue,
       timeOpen: timeOpen,
-      id: id
+      id: id,
+      formattedWaitTime: new Moment().fromNow(true)
     };
     expect(ticketListReducer({}, action)).toEqual({
       [id] : {
@@ -30,15 +33,37 @@ describe('ticketListReducer', () => {
         location: location,
         issue: issue,
         timeOpen: timeOpen,
-        id: id
+        id: id,
+        formattedWaitTime: 'a few seconds'
       }
     });
-
+    test('New ticket should include Moment-formatted wait times', () => {
+      const { names, location, issue, timeOpen, id } = sampleTicketData;
+      action = {
+        type: c.ADD_TICKET,
+        names: names,
+        location: location,
+        issue: issue,
+        timeOpen: timeOpen,
+        id: id,
+        formattedWaitTime: new Moment().fromNow(true)
+      };
+      expect(ticketListReducer({}, action)).toEqual({
+        [id] : {
+          names: names,
+          location: location,
+          issue: issue,
+          timeOpen: timeOpen,
+          id: id,
+          formattedWaitTime: 'a few seconds'
+        }
+      });
+    });
 
   test('Should add freshly-calculated Moment-formatted wait time to ticket entry', () => {
     const { names, location, issue, timeOpen, id } = sampleTicketData;
     action = {
-      type: 'UPDATE_TIME',
+      type: c.UPDATE_TIME,
       formattedWaitTime: '4 minutes',
       id: id
     };
@@ -53,6 +78,6 @@ describe('ticketListReducer', () => {
       }
     });
   });
-});
+});//(ticketListReducer({ [id] : sampleTicketData MEANS: (original piece of data)({ [grab one single ticket] : fromSampleData}, thisActionType)
   //test w/sample data that confirms reducer can add new ticket 2 redux store
 });

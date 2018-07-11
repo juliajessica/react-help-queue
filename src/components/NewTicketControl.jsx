@@ -7,15 +7,14 @@ class NewTicketControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      formVisibleOnPage: false,
+      formVisibleOnPage: false //local state
     };
     this.handleTroubleshootingConfirmation = this.handleTroubleshootingConfirmation.bind(this);
-  } //allows us to use state in method
-  //this is local state
+  } //binding this method to state
 
   handleTroubleshootingConfirmation(){
     this.setState({formVisibleOnPage: true});
-  } //EVENT HANDLER funct change state
+  } //EVENT HANDLER func to change state
 
   render(){
     let currentlyVisibleContent = null;
